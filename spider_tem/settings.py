@@ -23,6 +23,8 @@ SCHEDULER_PERSIST = True
 # 没绑定服务器ip这里要改
 REDIS_URL = 'reids://192.168.179.142:6379'              #---------redis：　ip
 
+# redis  shell :   lpush redis_key    url
+# redis  clear   shell :flushall
 
 # 改mongoDB的数据库，集合
 MONGO_HOST = '127.0.0.1'
@@ -73,6 +75,8 @@ USER_AGENTS = [
 # 下载中间键
 DOWNLOADER_MIDDLEWARES = {
     'spider_tem.middlewares.RandomUserAgent': 543,
+    # 'spider_tem.middlewares.SeleniumMiddleware': 544,
+
 }
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

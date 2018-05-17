@@ -6,7 +6,10 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 from random import random
 
+import time
 from scrapy import signals
+from scrapy.http import HtmlResponse
+from selenium import webdriver
 
 from spider_tem.settings import USER_AGENTS
 
@@ -114,3 +117,33 @@ class RandomUserAgent(object):
 
         # 设定
         request.headers['User-Agent'] = ua
+
+
+# selenium　获取数据
+class SeleniumMiddleware(object):
+    """返回一个htmlresponse"""
+
+    def process_request(self, request, spider):
+
+        url = request.url
+
+        if 'daydata' in url:
+            # 构建浏览器对象
+            driver = webdriver.Chrome()
+            # 加载页面
+            driver.get(url)
+            # 休眠--等待渲染完毕
+            time.sleep(3)
+            # 保存渲染之后的源码
+            data = driver.page_source
+            # 关闭浏览器
+            driver.close()
+
+            # 创建响应，并返回给引擎
+            res = HtmlResponse(
+                url=request.url,
+                body=data,
+                request=request,
+                encoding='utf-8'
+            )
+            return res
