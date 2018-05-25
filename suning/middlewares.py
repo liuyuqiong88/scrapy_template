@@ -4,14 +4,14 @@
 #
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-from random import random
+import random
 
 import time
 from scrapy import signals
 from scrapy.http import HtmlResponse
 from selenium import webdriver
 
-from spider_tem.settings import USER_AGENTS
+from suning.settings import USER_AGENTS
 
 
 class SpiderTemSpiderMiddleware(object):
@@ -147,3 +147,11 @@ class SeleniumMiddleware(object):
                 encoding='utf-8'
             )
             return res
+
+
+
+# 苏宁价格
+#             0070094507/10242981060
+# https://ds.suning.cn/ds/generalForTile/000000010529848583_-020-2-0070211614-1--ds0000000007709.jsonp?callback=ds0000000007709
+#https://ds.suning.cn/ds/generalForTile/000000000617557221__2_0070062935,000000000620645117__2_0070162853,000000010321316326__2_0070116240,000000010445627239__2_0070062935,000000010243612509__2_0070100229,000000000607037589_,000000000612917680__2_0070075676,000000000618434109__2_0070162853,000000010524717800_-020-2-0070074640-1--ds0000000009811.jsonp?callback=ds0000000009811
+# https://ds.suning.cn/ds/generalForTile/000000010242981060_-020-2-0070094507-1--ds0000000007709.jsonp?callback=ds0000000007709

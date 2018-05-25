@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for spider_tem project
+# Scrapy settings for suning project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -10,10 +10,10 @@
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 # 爬虫名字也必须改
-BOT_NAME = 'spider_tem'          # ---------spider project
+BOT_NAME = 'suning'          # ---------spider project
 
-SPIDER_MODULES = ['spider_tem.spiders']
-NEWSPIDER_MODULE = 'spider_tem.spiders'
+SPIDER_MODULES = ['suning.spiders']
+NEWSPIDER_MODULE = 'suning.spiders'
 
 DUPEFILTER_CLASS = 'scrapy_redis.dupefilter.RFPDupeFilter'
 
@@ -21,7 +21,7 @@ SCHEDULER = 'scrapy_redis.scheduler.Scheduler'
 
 SCHEDULER_PERSIST = True
 # 没绑定服务器ip这里要改
-REDIS_URL = 'reids://192.168.179.142:6379'              #---------redis：　ip
+REDIS_URL = 'reids://192.168.179.145:6379'              #---------redis：　ip
 
 # redis  shell :   lpush redis_key    url
 # redis  clear   shell :flushall
@@ -29,14 +29,14 @@ REDIS_URL = 'reids://192.168.179.142:6379'              #---------redis：　ip
 # 改mongoDB的数据库，集合
 MONGO_HOST = '127.0.0.1'
 MONGO_PORT = 27017
-MONGO_DB = 'Sun'                #------数据库名
-MONGO_COL = 'dongguan'          #------数据库集合
+MONGO_DB = 'suning'                #------数据库名
+MONGO_COL = 'suning_goods'          #------数据库集合
 
 # 输出管道，根据mongoDb或者redis修正
 ITEM_PIPELINES = {
 
-    'scrapy_redis.pipelines.RedisPipeline': 400,                #--------redis 数据存储管道
-    # 'scrapy_redis.pipelines.MongoPipeline': 401,              #--------mongoDB　数据存储管道
+    # 'scrapy_redis.pipelines.RedisPipeline': 400,                #--------redis 数据存储管道
+    'suning.pipelines.MongoPipeline': 401,              #--------mongoDB　数据存储管道
 }
 
 # user_Agent list
@@ -74,13 +74,13 @@ USER_AGENTS = [
 
 # 下载中间键
 DOWNLOADER_MIDDLEWARES = {
-    'spider_tem.middlewares.RandomUserAgent': 543,
-    # 'spider_tem.middlewares.SeleniumMiddleware': 544,
+    'suning.middlewares.RandomUserAgent': 543,
+    # 'suning.middlewares.SeleniumMiddleware': 544,
 
 }
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-# USER_AGENT = 'spider_tem (+http://www.yourdomain.com)'
+# USER_AGENT = 'suning (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 # ROBOTSTXT_OBEY = True
@@ -111,7 +111,7 @@ DEFAULT_REQUEST_HEADERS = {
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 # SPIDER_MIDDLEWARES = {
-#    'spider_tem.middlewares.SpiderTemSpiderMiddleware': 543,
+#    'suning.middlewares.SpiderTemSpiderMiddleware': 543,
 # }
 
 # Enable or disable downloader middlewares
@@ -127,7 +127,7 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 # ITEM_PIPELINES = {
-#    'spider_tem.pipelines.SpiderTemPipeline': 300,
+#    'suning.pipelines.SpiderTemPipeline': 300,
 # }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
